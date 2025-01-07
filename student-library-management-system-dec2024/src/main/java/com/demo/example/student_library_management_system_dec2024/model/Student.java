@@ -1,9 +1,8 @@
 package com.demo.example.student_library_management_system_dec2024.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
+import org.hibernate.engine.spi.CascadeStyle;
 
 @Entity
 @Table(name = "student")
@@ -29,4 +28,7 @@ public class Student {
 
     @Column(nullable = false)
     private String dept;
+
+    @OneToOne(mappedBy = "student",  cascade= CascadeType.ALL)
+    private Card card;
 }
