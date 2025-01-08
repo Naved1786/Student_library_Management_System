@@ -1,10 +1,12 @@
 package com.demo.example.student_library_management_system_dec2024.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
+@Data
 @Entity
 @Table(name = "Transaction")
 public class Transaction {
@@ -17,6 +19,7 @@ public class Transaction {
     private String trancsactionStatus;
 
     @Column(name = "transaction_date")
+    @CreationTimestamp
     private Date TrancsactionDate;
 
     @Column(name = "Due_date")
@@ -28,6 +31,13 @@ public class Transaction {
     @Column(name = "issue_or_return")
     private String issueOrReturn;
 
+    @ManyToOne
+    @JoinColumn
+    private Card card;
+
+    @ManyToOne
+    @JoinColumn
+    private Book book;
 
 
 }

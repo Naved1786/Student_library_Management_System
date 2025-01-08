@@ -1,9 +1,15 @@
 package com.demo.example.student_library_management_system_dec2024.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 @Entity
-@Table(name = "Author")
+@Table(name = "author")
 public class Author {
 
     @Id
@@ -22,5 +28,10 @@ public class Author {
 
     @Column
     private Double rating;
+
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Book> bookByAuthor=new ArrayList<>();
+
 
 }

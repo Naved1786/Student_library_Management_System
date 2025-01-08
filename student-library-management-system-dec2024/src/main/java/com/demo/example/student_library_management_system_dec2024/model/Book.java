@@ -1,7 +1,12 @@
 package com.demo.example.student_library_management_system_dec2024.model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
 @Entity
 @Table(name = "Book")
 public class Book {
@@ -25,5 +30,17 @@ public class Book {
 
     @Column
     private boolean available;
+
+    @ManyToOne
+    @JoinColumn
+    private Author author;
+
+    @ManyToOne
+    @JoinColumn
+    private Card card;
+
+    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
+    private List<Transaction> transactions=new ArrayList<>();
+
 
 }
