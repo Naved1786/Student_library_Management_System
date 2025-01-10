@@ -11,6 +11,7 @@ import org.hibernate.engine.spi.CascadeStyle;
 public class Student {
     @Id
     @Column(nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
