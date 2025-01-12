@@ -55,5 +55,11 @@ public class StudentController {
        String response=studentService.updateStudentByPatch(id,mobile);
        return response;
     }
+
+    @GetMapping("/findByPage")
+    public List<Student> findStudentBasedOnPage(@RequestParam int pageNo, @RequestParam int pageSize){
+      List<Student> studentList  =studentService.getStudentBasedOnPage(pageNo,pageSize);
+      return studentList;
+    }
 }
 

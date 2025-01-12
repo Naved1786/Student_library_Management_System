@@ -6,6 +6,9 @@ import com.demo.example.student_library_management_system_dec2024.model.Student;
 import com.demo.example.student_library_management_system_dec2024.repository.StudentRepository;
 import com.demo.example.student_library_management_system_dec2024.requestdto.StudentRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -76,5 +79,13 @@ public class StudentService {
         }else{
             return "Student can not be updated";
         }
+    }
+
+    public List<Student> getStudentBasedOnPage(int pageNo, int pageSize){
+        // pagination and sorting ...ascending and descending order wise ..
+        Page<Student> studentPage=studentRepository.findAll(PageRequest.of(pageNo,pageSize,Sort.by("name").descending()));
+        // we should convert page into list
+        List<Student> studentList=studentPage.getContent();
+        return studentList;
     }
 }
