@@ -88,4 +88,8 @@ public class StudentService {
         List<Student> studentList=studentPage.getContent();
         return studentList;
     }
+    public Student getStudentByEmail(String email){
+        Student student=studentRepository.findByEmail(email);
+        return student;
+    }
 }
