@@ -97,4 +97,9 @@ public class StudentService {
      List<Student> studentList= studentRepository.findByEmailOrDept(email, dept);
      return studentList;
     }
+
+    public List<Student> StudentByDept(String dept){
+       List<Student> studentList= studentRepository.findByDept(dept);
+       return studentList;
+    }
 }
