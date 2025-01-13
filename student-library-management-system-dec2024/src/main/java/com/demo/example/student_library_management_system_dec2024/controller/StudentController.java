@@ -66,5 +66,10 @@ public class StudentController {
          Student student= studentService.getStudentByEmail(email);
          return student;
     }
+    @GetMapping("/findByEmailOrDept")
+    public List<Student> getStudentByEmailOrDept(@RequestParam String email,@RequestParam String Dept){
+        List<Student> studentList= studentService.StudentByEmailOrDept(email,Dept);
+         return studentList;
+    }
 }
 

@@ -92,4 +92,9 @@ public class StudentService {
         Student student=studentRepository.findByEmail(email);
         return student;
     }
+
+    public List<Student> StudentByEmailOrDept(String email, String dept){
+     List<Student> studentList= studentRepository.findByEmailOrDept(email, dept);
+     return studentList;
+    }
 }
