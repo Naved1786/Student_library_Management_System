@@ -5,6 +5,7 @@ import com.demo.example.student_library_management_system_dec2024.model.Student;
 import com.demo.example.student_library_management_system_dec2024.requestdto.StudentRequestDto;
 import com.demo.example.student_library_management_system_dec2024.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,44 +17,76 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
     @PostMapping("/save")
-    public  String saveStudent(@RequestBody StudentRequestDto studentRequestDto){
-         String response= studentService.addStudent(studentRequestDto);
-          return  response;
-
-
+    public ResponseEntity<?> saveStudent(@RequestBody StudentRequestDto studentRequestDto){
+        try {
+            String response= studentService.addStudent(studentRequestDto);
+            return  ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
     }
     @GetMapping("/find/{id}")
-    public Student findStudentById(@PathVariable int id){
-          Student student=studentService.getStudentById(id);
-          return student;
+    public ResponseEntity<?> findStudentById(@PathVariable int id){
+        try {
+            Student student=studentService.getStudentById(id);
+            return ResponseEntity.ok(student);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
     @GetMapping("/findAll")
-    public List<Student> findAllStudent(){
-      List<Student> studentList = studentService.getAllStudent();
-      return studentList;
+    public ResponseEntity<?> findAllStudent(){
+        try {
+            List<Student> studentList = studentService.getAllStudent();
+            return ResponseEntity.ok(studentList);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/count")
-    public String countStudents(){
-        String response= studentService.countStudent();
-        return response;
+    public ResponseEntity<?> countStudents(){
+        try {
+            String response= studentService.countStudent();
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
     @DeleteMapping("/delete/{id}")
-    public String deleteStudentById(@PathVariable int id){
-       String response= studentService.deleteStudentById(id);
-        return  response;
+    public ResponseEntity<?> deleteStudentById(@PathVariable int id){
+        try {
+            String response= studentService.deleteStudentById(id);
+            return  ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
 
     @PutMapping("/update/{id}")
-    public String updateStudentsById(@PathVariable int id,@RequestBody StudentRequestDto studentRequestDto){
-        String response=studentService.updateStudent(id,studentRequestDto);
-        return response;
+    public ResponseEntity<?> updateStudentsById(@PathVariable int id,@RequestBody StudentRequestDto studentRequestDto){
+        try {
+            String response=studentService.updateStudent(id,studentRequestDto);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
 
     @PatchMapping("/updatePatch/{id}")
-    public String updateStudentMobileByPatch(@PathVariable int id,@RequestParam String mobile ){
-       String response=studentService.updateStudentByPatch(id,mobile);
-       return response;
+    public ResponseEntity<?> updateStudentMobileByPatch(@PathVariable int id,@RequestParam String mobile ){
+        try {
+            String response=studentService.updateStudentByPatch(id,mobile);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            return  ResponseEntity.internalServerError().body(e.getMessage());
+        }
+
     }
 
     @GetMapping("/findByPage")
